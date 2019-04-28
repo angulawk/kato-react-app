@@ -1,18 +1,18 @@
-import { render } from 'react-testing-library';
+import { fireEvent, render } from 'react-testing-library';
 import DropdownButton from '../index';
 import React from 'react';
+import 'jest-styled-components';
+import 'react-testing-library/cleanup-after-each';
 
-const setup = props => {
+function setup(props) {
   const defaultProps = {
     onClick: () => {}
   }
 
   const utils = render(
-    <div>
-      <DropdownButton {...defaultProps} {...props} data-testid='dropdownButton'>
-        Click me
-      </DropdownButton>
-    </div>
+    <DropdownButton {...defaultProps} {...props} data-testid='dropdownButton'>
+      Click me
+    </DropdownButton>
   );
 
   const { getByTestId } = utils;
@@ -26,12 +26,20 @@ const setup = props => {
 
 describe('Component - DropdownButton', () => {
   let dropdownButton;
+  let onClick;
 
   beforeEach(() => {
-    dropdownButton = setup().dropdownButton;
+    onClick = jest.fn();
+    dropdownButton = setup({onClick}).dropdownButton;
   });
 
   test('Should have correct color', () => {
     expect(dropdownButton).toHaveStyleRule('color', '#FFFFFF');
-  })
+  }); //TODO - add tests after adding styles
+
+  test('Should have working onClick handler', () => {
+    fireEvent.click(dropdownButton);
+    expect(onClick).toHaveBeenCalled();
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
 })

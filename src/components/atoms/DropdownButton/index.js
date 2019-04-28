@@ -5,7 +5,7 @@ const DropdownButton = ({
   children,
   onClick
 }) => (
-  <DropdownButton.Container onClick={onClick}>
+  <DropdownButton.Container onClick={onClick} data-testid='dropdownButton'>
     {children}
   </DropdownButton.Container>
 );
