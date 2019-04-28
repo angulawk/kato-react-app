@@ -32,10 +32,5 @@
   "devDependencies": {
     "jest-styled-components": "^6.3.1",
     "react-testing-library": "^7.0.0"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "^styled-components": "<rootDir>/node_modules/styled-components"
-    }
   }
 }
