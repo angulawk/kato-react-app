@@ -11,7 +11,15 @@ const DropdownButton = ({
 );
 
 DropdownButton.Container = styled.button`
-  background-color: #000000;
+  border: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  text-align: left;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #66a0ff;
   color: #FFFFFF;
 `;
 

@@ -7,7 +7,7 @@ function DropdownItems({
   onSelect
 }) {
   return(
-    <DropdownItems.Container>
+    <DropdownItems.Container data-testid='dropdownItems'>
       {items && renderDropdownItem()}
     </DropdownItems.Container>
   );

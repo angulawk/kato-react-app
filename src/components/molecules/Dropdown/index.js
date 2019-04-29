@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import DropdownButton from "../../atoms/DropdownButton";
 import DropdownItems from "../DropdownItems";
+import DropdownIcon from "../../atoms/DropdownIcon";
 
 function Dropdown({
   items,
@@ -11,9 +12,10 @@ function Dropdown({
   const [dropdownItemValue, setDropdownItemValue] = useState(items && items[0].name);
 
   return(
-    <Dropdown.Container>
+    <Dropdown.Container data-testid='dropdown'>
       <DropdownButton onClick={handleDropdownButtonClick}>
         {dropdownItemValue}
+        <DropdownIcon icon="arrow down" />
       </DropdownButton>
       {areDropdownItemsVisible &&
         <DropdownItems onSelect={handleDropdownItemsSelect} items={items} />
@@ -33,8 +35,8 @@ function Dropdown({
 }
 
 Dropdown.Container = styled.div`
-  background-color: #000000;
-  color: #FFFFFF;
+  margin: 0 auto;
+  width: 200px;
 `;
 
 export default Dropdown;

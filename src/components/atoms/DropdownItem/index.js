@@ -6,7 +6,7 @@ function DropdownItem({
   onClick
 }) {
   return(
-    <DropdownItem.Container onClick={handleClick}>
+    <DropdownItem.Container onClick={handleClick} data-testid='dropdownItem'>
       {children}
     </DropdownItem.Container>
   );
@@ -17,7 +17,10 @@ function DropdownItem({
 }
 
 DropdownItem.Container = styled.div`
-  background-color: #000000;
+  border-top: 1px solid #FFFFFF;
+  padding: 10px 20px;
+  font-family: sans-serif;
+  background-color: #66a0ff;
   color: #FFFFFF;
 `;
 

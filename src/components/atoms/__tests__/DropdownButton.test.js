@@ -1,5 +1,5 @@
-import { fireEvent, render } from 'react-testing-library';
-import DropdownButton from '../index';
+import { cleanup, fireEvent, render } from 'react-testing-library';
+import DropdownButton from '../DropdownButton';
 import React from 'react';
 import 'jest-styled-components';
 import 'react-testing-library/cleanup-after-each';
@@ -16,11 +16,11 @@ function setup(props) {
   );
 
   const { getByTestId } = utils;
-  const dropdownButton = getByTestId('dropdownButton')
+  const dropdownButton = getByTestId('dropdownButton');
 
   return {
     ...utils,
-    dropdownButton,
+    dropdownButton
   }
 }
 
@@ -33,9 +33,23 @@ describe('Component - DropdownButton', () => {
     dropdownButton = setup({onClick}).dropdownButton;
   });
 
+  afterEach(cleanup);
+
   test('Should have correct color', () => {
     expect(dropdownButton).toHaveStyleRule('color', '#FFFFFF');
-  }); //TODO - add tests after adding styles
+  });
+
+  test('Should have correct background', () => {
+    expect(dropdownButton).toHaveStyleRule('background-color', '#66a0ff');
+  });
+
+  test('Should have correct font size', () => {
+    expect(dropdownButton).toHaveStyleRule('font-size', '16px');
+  });
+
+  test('Should have correct width', () => {
+    expect(dropdownButton).toHaveStyleRule('width', '200px');
+  });
 
   test('Should have working onClick handler', () => {
     fireEvent.click(dropdownButton);
