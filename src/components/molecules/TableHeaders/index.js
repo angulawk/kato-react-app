@@ -22,8 +22,7 @@ function TableHeaders({
   }
 }
 
-TableHeaders.Container = styled.div`
-  display: flex;
+TableHeaders.Container = styled.tr`
 `;
 
 export default TableHeaders;

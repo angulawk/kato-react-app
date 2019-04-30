@@ -22,6 +22,24 @@ const titles = [
   {
     name: "Temp"
   }
+];
+
+const data = [
+  {
+    date: "1/02",
+    humidity: 10,
+    temp: 3324
+  },
+  {
+    date: "3/03",
+    humidity: 40,
+    temp: 6543
+  },
+  {
+    date: "4/05",
+    humidity: 90,
+    temp: 7553
+  }
 ]
 
 function App() {
@@ -31,7 +49,7 @@ function App() {
         Select city to display weather
       </Text>
       <Dropdown items={items} onSelect={handleDropdownSelect} />
-      <Table titles={titles} />
+      <Table titles={titles} data={data} onChange={handleDropdownSelect} />
     </div>
   );
 

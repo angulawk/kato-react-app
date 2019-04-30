@@ -11,9 +11,9 @@ function TableHeader({
   );
 }
 
-TableHeader.Container = styled.div`
+TableHeader.Container = styled.th`
   border: 1px solid #FFFFFF;
-  padding: 10px 20px;
+  padding: 15px 30px;
   font-family: sans-serif;
   background-color: #66a0ff;
   color: #FFFFFF;
