@@ -11,7 +11,9 @@ const DropdownButton = ({
 );
 
 DropdownButton.Container = styled.button`
-  border: 0;
+	border: none;
+	cursor: pointer;
+	outline: inherit;
   display: flex;
   justify-content: space-between;
   align-items: center;

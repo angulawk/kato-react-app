@@ -15,7 +15,7 @@ function Dropdown({
     <Dropdown.Container data-testid='dropdown'>
       <DropdownButton onClick={handleDropdownButtonClick}>
         {dropdownItemValue}
-        <DropdownIcon icon="arrow down" />
+        <DropdownIcon icon="arrowDown" />
       </DropdownButton>
       {areDropdownItemsVisible &&
         <DropdownItems onSelect={handleDropdownItemsSelect} items={items} />

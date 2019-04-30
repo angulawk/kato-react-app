@@ -35,25 +35,33 @@ describe('Component - DropdownItem', () => {
 
   afterEach(cleanup);
 
-  test('Should have correct color', () => {
-    expect(dropdownItem).toHaveStyleRule('color', '#FFFFFF');
-  });
-
-  test('Should have correct background', () => {
-    expect(dropdownItem).toHaveStyleRule('background-color', '#66a0ff');
+  test('Should have correct border-top', () => {
+    expect(dropdownItem).toHaveStyleRule('border-top', '1px solid #FFFFFF');
   });
 
   test('Should have correct font padding', () => {
     expect(dropdownItem).toHaveStyleRule('padding', '10px 20px');
   });
 
-  test('Should have correct border-top', () => {
-    expect(dropdownItem).toHaveStyleRule('border-top', '1px solid #FFFFFF');
+  test('Should have correct font-family', () => {
+    expect(dropdownItem).toHaveStyleRule('font-family', 'sans-serif');
+  });
+
+  test('Should have correct background-color', () => {
+    expect(dropdownItem).toHaveStyleRule('background-color', '#66a0ff');
+  });
+
+  test('Should have correct color', () => {
+    expect(dropdownItem).toHaveStyleRule('color', '#FFFFFF');
   });
 
   test('Should have working onClick handler', () => {
     fireEvent.click(dropdownItem);
     expect(onClick).toHaveBeenCalled();
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  test('Should have children', () => {
+    expect(dropdownItem.textContent).toEqual("Click me");
   });
 })

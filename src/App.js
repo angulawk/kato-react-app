@@ -44,7 +44,7 @@ const data = [
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <Text>
         Select city to display weather
       </Text>
