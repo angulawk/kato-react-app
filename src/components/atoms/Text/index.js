@@ -1,15 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
 
-function Text({
+const Text = ({
   children
-}) {
-  return(
-    <Text.Container data-testid='text'>
-      {children}
-    </Text.Container>
-  );
-}
+}) => (
+  <Text.Container data-testid='text'>
+    {children}
+  </Text.Container>
+)
 
 Text.Container = styled.div`
   text-align: center;

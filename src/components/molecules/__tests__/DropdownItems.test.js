@@ -42,14 +42,6 @@ describe('Component - DropdownItems', () => {
 
   afterEach(cleanup);
 
-  test('Should have correct background-color', () => {
-    expect(dropdownItems).toHaveStyleRule('background-color', '#000000');
-  });
-
-  test('Should have correct color', () => {
-    expect(dropdownItems).toHaveStyleRule('color', '#FFFFFF');
-  });
-
   test('Should have working onSelect handler', () => {
     fireEvent.click(dropdownItems.firstChild);
     expect(onSelect).toHaveBeenCalled();

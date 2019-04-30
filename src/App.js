@@ -13,12 +13,12 @@ const items = [
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <Text>
         Select city to display weather
       </Text>
       <Dropdown items={items} onSelect={handleDropdownSelect} />
-    </div>
+    </main>
   );
 
   function handleDropdownSelect() {}

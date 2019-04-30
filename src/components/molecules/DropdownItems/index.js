@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from "styled-components";
 import DropdownItem from "../../atoms/DropdownItem";
 
 function DropdownItems({
@@ -7,13 +6,13 @@ function DropdownItems({
   onSelect
 }) {
   return(
-    <DropdownItems.Container data-testid='dropdownItems'>
-      {items && renderDropdownItem()}
-    </DropdownItems.Container>
+    <div data-testid='dropdownItems'>
+      {renderDropdownItem()}
+    </div>
   );
 
   function renderDropdownItem() {
-    return items.map(({
+    return (items.length > 0) && items.map(({
       name
     }) => (
       <DropdownItem onClick={onSelect} key={name}>
@@ -22,10 +21,5 @@ function DropdownItems({
     ))
   }
 }
-
-DropdownItems.Container = styled.div`
-  background-color: #000000;
-  color: #FFFFFF;
-`;
 
 export default DropdownItems;

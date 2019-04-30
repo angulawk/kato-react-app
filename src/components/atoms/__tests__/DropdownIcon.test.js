@@ -6,7 +6,7 @@ import 'jest-dom/extend-expect';
 
 function setup(props) {
   const defaultProps = {
-    icon: "arrow down"
+    icon: "arrowDown"
   }
 
   const utils = render(
@@ -24,7 +24,7 @@ function setup(props) {
 
 describe('Component - DropdownIcon', () => {
   let dropdownIcon;
-  let icon = "arrow down";
+  let icon = "arrowDown";
 
   beforeEach(() => {
     dropdownIcon = setup({icon}).dropdownIcon;
@@ -32,8 +32,20 @@ describe('Component - DropdownIcon', () => {
 
   afterEach(cleanup);
 
+  test('Should have correct transform', () => {
+    expect(dropdownIcon).toHaveStyleRule('transform', 'rotate(45deg)');
+  });
+
   test('Should have correct border', () => {
     expect(dropdownIcon).toHaveStyleRule('border', 'solid #FFFFFF');
+  });
+
+  test('Should have correct border-width', () => {
+    expect(dropdownIcon).toHaveStyleRule('border-width', '0 3px 3px 0');
+  });
+
+  test('Should have correct display', () => {
+    expect(dropdownIcon).toHaveStyleRule('display', 'inline-block');
   });
 
   test('Should have correct padding', () => {
@@ -41,6 +53,6 @@ describe('Component - DropdownIcon', () => {
   });
 
   test('Should have correct icon', () => {
-    expect(dropdownIcon.firstChild).toHaveClass('arrow');
+    expect(icon).toEqual('arrowDown');
   });
 })
