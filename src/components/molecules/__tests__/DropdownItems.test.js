@@ -14,17 +14,20 @@ function setup(props) {
     <DropdownItems {...defaultProps} {...props} />
   );
 
-  const { getByTestId } = utils;
+  const { getByTestId, getAllByTestId } = utils;
   const dropdownItems = getByTestId('dropdownItems');
+  const dropdownItem = getAllByTestId('dropdownItem');
 
   return {
     ...utils,
-    dropdownItems
+    dropdownItems,
+    dropdownItem
   }
 }
 
 describe('Component - DropdownItems', () => {
   let dropdownItems;
+  let dropdownItem;
   let onSelect;
   let items = [
     {
@@ -37,7 +40,9 @@ describe('Component - DropdownItems', () => {
 
   beforeEach(() => {
     onSelect = jest.fn();
-    dropdownItems = setup({ onSelect, items }).dropdownItems;
+    const setupItems = setup({ onSelect, items });
+    dropdownItems = setupItems.dropdownItems;
+    dropdownItem = setupItems.dropdownItem;
   });
 
   test('Should have correct position', () => {
@@ -48,9 +53,24 @@ describe('Component - DropdownItems', () => {
     expect(dropdownItems).toHaveStyleRule('width', '200px');
   });
 
-  test('Should have working onSelect handler', () => {
-    fireEvent.click(dropdownItems.firstChild);
-    expect(onSelect).toHaveBeenCalled();
-    expect(onSelect).toHaveBeenCalledTimes(1);
+  describe("Component - DropdownItem", () => {
+    test('Should render', () => {
+      expect(dropdownItem).toBeTruthy();
+    });
+
+    test('Should have 2 dropdown items', () => {
+      expect(dropdownItem.length).toEqual(2);
+    });
+
+    test('Should display correct data', () => {
+      expect(dropdownItem[0].textContent).toEqual(items[0].name);
+      expect(dropdownItem[1].textContent).toEqual(items[1].name);
+    });
+
+    test('Should have working onSelect handler', () => {
+      fireEvent.click(dropdownItem[0]);
+      expect(onSelect).toHaveBeenCalled();
+      expect(onSelect).toHaveBeenCalledTimes(1);
+    });
   });
 })
