@@ -13,10 +13,7 @@ function DropdownIcon({
   }
 
   return (
-    <DropdownIcon.Container
-      data-testid='dropdownIcon'
-      className={icon}
-    />
+    <DropdownIcon.Container data-testid='dropdownIcon' />
   )
 }
 

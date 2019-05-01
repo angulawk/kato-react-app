@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from 'react-testing-library';
+import { fireEvent, render } from 'react-testing-library';
 import DropdownItems from '../DropdownItems';
 import React from 'react';
 import 'jest-styled-components';
@@ -11,7 +11,7 @@ function setup(props) {
   }
 
   const utils = render(
-    <DropdownItems {...defaultProps} {...props} data-testid='dropdownItems' />
+    <DropdownItems {...defaultProps} {...props} />
   );
 
   const { getByTestId } = utils;
@@ -40,7 +40,13 @@ describe('Component - DropdownItems', () => {
     dropdownItems = setup({onSelect, items}).dropdownItems;
   });
 
-  afterEach(cleanup);
+  test('Should have correct position', () => {
+    expect(dropdownItems).toHaveStyleRule('position', 'absolute');
+  });
+
+  test('Should have correct width', () => {
+    expect(dropdownItems).toHaveStyleRule('width', '200px');
+  });
 
   test('Should have working onSelect handler', () => {
     fireEvent.click(dropdownItems.firstChild);

@@ -1,4 +1,4 @@
-import { cleanup, render } from 'react-testing-library'
+import { render } from 'react-testing-library'
 import Text from '../Text';
 import React from 'react';
 import 'jest-styled-components';
@@ -6,7 +6,7 @@ import 'react-testing-library/cleanup-after-each';
 
 function setup(props) {
   const utils = render(
-    <Text {...props} data-testid='text'>
+    <Text {...props}>
       Text to display
     </Text>
   );
@@ -27,8 +27,6 @@ describe('Component - Text', () => {
     text = setup().text;
   });
 
-  afterEach(cleanup);
-  
   test('Should have correct text-align', () => {
     expect(text).toHaveStyleRule('text-align', 'center');
   });
