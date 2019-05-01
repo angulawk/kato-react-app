@@ -4,6 +4,20 @@ import React from 'react';
 import 'jest-styled-components';
 import 'react-testing-library/cleanup-after-each';
 
+jest.mock("../TableHeaderRow", () => ({ titles }) => (
+  <tr
+    data-testid="mockTableHeaderRow"
+    titles={JSON.stringify(titles)}
+  />
+));
+
+jest.mock("../TableBody", () => ({ data }) => (
+  <tbody
+    data-testid="mockTableBody"
+    data={JSON.stringify(data)}
+  />
+));
+
 function setup(props) {
   const defaultProps = {
     titles: [],
@@ -16,10 +30,14 @@ function setup(props) {
 
   const { getByTestId } = utils;
   const table = getByTestId('table');
+  const tableHeaderRow = getByTestId('mockTableHeaderRow');
+  const tableBody = getByTestId('mockTableBody');
 
   return {
     ...utils,
-    table
+    table,
+    tableHeaderRow,
+    tableBody
   }
 }
 
@@ -81,11 +99,37 @@ describe('Component - Table', () => {
     expect(table).toHaveStyleRule('width', '100%');
   });
 
-  // describe('Component - Table Button', () => {
-  //   test('Should have correct text as child', () => {
-  //     const { tableButton } = setup({ titles, data });
-  //
-  //     expect(tableButton.textContent).toEqual(titles[0].name);
-  //   });
-  // })
+  describe('Component - Table Header Row', () => {
+    test('Should render', () => {
+      const { tableHeaderRow } = setup({ titles });
+
+      expect(tableHeaderRow).toBeTruthy();
+    });
+
+    test('Should display correct data', () => {
+      const { tableHeaderRow } = setup({ titles });
+      const tableHeaderTitle = JSON.parse(tableHeaderRow.getAttribute("titles"));
+
+      expect(tableHeaderTitle[0].name).toEqual(titles[0].name);
+      expect(tableHeaderTitle[1].name).toEqual(titles[1].name);
+      expect(tableHeaderTitle[2].name).toEqual(titles[2].name);
+    });
+  });
+
+  describe('Component - Table Body', () => {
+    test('Should render', () => {
+      const { tableBody } = setup({ data });
+
+      expect(tableBody).toBeTruthy();
+    });
+
+    test('Should display correct data', () => {
+      const { tableBody } = setup({ data });
+      const tableBodyData = JSON.parse(tableBody.getAttribute("data"))
+
+      expect(tableBodyData[0].date).toEqual(data[0].date);
+      expect(tableBodyData[0].humidity).toEqual(data[0].humidity);
+      expect(tableBodyData[0].temp).toEqual(data[0].temp);
+    });
+  });
 })

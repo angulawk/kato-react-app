@@ -30,7 +30,7 @@ describe('Component - DropdownButton', () => {
 
   beforeEach(() => {
     onClick = jest.fn();
-    dropdownButton = setup({onClick}).dropdownButton;
+    dropdownButton = setup({ onClick }).dropdownButton;
   });
 
   test('Should have correct border', () => {

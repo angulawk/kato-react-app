@@ -8,7 +8,7 @@ function DropdownItems({
 }) {
   return(
     <DropdownItems.Container data-testid='dropdownItems'>
-      {renderDropdownItem()}
+      { renderDropdownItem() }
     </DropdownItems.Container>
   );
 

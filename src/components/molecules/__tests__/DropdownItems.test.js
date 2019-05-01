@@ -37,7 +37,7 @@ describe('Component - DropdownItems', () => {
 
   beforeEach(() => {
     onSelect = jest.fn();
-    dropdownItems = setup({onSelect, items}).dropdownItems;
+    dropdownItems = setup({ onSelect, items }).dropdownItems;
   });
 
   test('Should have correct position', () => {

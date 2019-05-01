@@ -7,13 +7,13 @@ import 'react-testing-library/cleanup-after-each';
 function setup(props) {
   const utils = render(
     <table>
-      <thead>
+      <tbody>
         <tr>
-        <TableCell {...props}>
-          Some data
-        </TableCell>
+          <TableCell {...props}>
+            Some data
+          </TableCell>
         </tr>
-      </thead>
+      </tbody>
     </table>
   );
 
