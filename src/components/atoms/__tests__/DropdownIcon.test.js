@@ -1,8 +1,8 @@
-import { cleanup, render } from 'react-testing-library'
+import { render } from 'react-testing-library'
 import DropdownIcon from '../DropdownIcon';
 import React from 'react';
 import 'jest-styled-components';
-import 'jest-dom/extend-expect';
+import 'react-testing-library/cleanup-after-each';
 
 function setup(props) {
   const defaultProps = {
@@ -10,7 +10,7 @@ function setup(props) {
   }
 
   const utils = render(
-    <DropdownIcon {...defaultProps} {...props} data-testid='dropdownIcon' />
+    <DropdownIcon {...defaultProps} {...props} />
   );
 
   const { getByTestId } = utils;
@@ -27,10 +27,8 @@ describe('Component - DropdownIcon', () => {
   let icon = "arrowDown";
 
   beforeEach(() => {
-    dropdownIcon = setup({icon}).dropdownIcon;
+    dropdownIcon = setup({ icon }).dropdownIcon;
   });
-
-  afterEach(cleanup);
 
   test('Should have correct transform', () => {
     expect(dropdownIcon).toHaveStyleRule('transform', 'rotate(45deg)');

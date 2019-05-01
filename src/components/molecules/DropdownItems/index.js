@@ -1,14 +1,15 @@
 import React from 'react';
 import DropdownItem from "../../atoms/DropdownItem";
+import styled from "styled-components";
 
 function DropdownItems({
   items,
   onSelect
 }) {
   return(
-    <div data-testid='dropdownItems'>
-      {renderDropdownItem()}
-    </div>
+    <DropdownItems.Container data-testid='dropdownItems'>
+      { renderDropdownItem() }
+    </DropdownItems.Container>
   );
 
   function renderDropdownItem() {
@@ -21,5 +22,10 @@ function DropdownItems({
     ))
   }
 }
+
+DropdownItems.Container = styled.div`
+  position: absolute;
+  width: 200px;
+`
 
 export default DropdownItems;

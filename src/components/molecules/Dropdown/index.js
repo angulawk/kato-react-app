@@ -9,7 +9,7 @@ function Dropdown({
   onSelect
 }) {
   const [areDropdownItemsVisible, setAreDropdownItemsVisible] = useState(false);
-  const [dropdownItemValue, setDropdownItemValue] = useState(items && items[0].name);
+  const [dropdownItemValue, setDropdownItemValue] = useState(items && items[0] && items[0].name);
 
   return(
     <Dropdown.Container data-testid='dropdown'>

@@ -17,6 +17,7 @@ function DropdownItem({
 }
 
 DropdownItem.Container = styled.div`
+  cursor: pointer;
   border-top: 1px solid #FFFFFF;
   padding: 10px 20px;
   font-family: sans-serif;

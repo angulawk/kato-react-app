@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from 'react-testing-library';
+import { fireEvent, render } from 'react-testing-library';
 import DropdownButton from '../DropdownButton';
 import React from 'react';
 import 'jest-styled-components';
@@ -10,7 +10,7 @@ function setup(props) {
   }
 
   const utils = render(
-    <DropdownButton {...defaultProps} {...props} data-testid='dropdownButton'>
+    <DropdownButton {...defaultProps} {...props}>
       Click me
     </DropdownButton>
   );
@@ -30,10 +30,8 @@ describe('Component - DropdownButton', () => {
 
   beforeEach(() => {
     onClick = jest.fn();
-    dropdownButton = setup({onClick}).dropdownButton;
+    dropdownButton = setup({ onClick }).dropdownButton;
   });
-
-  afterEach(cleanup);
 
   test('Should have correct border', () => {
     expect(dropdownButton).toHaveStyleRule('border', 'none');

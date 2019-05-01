@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from 'react-testing-library';
+import { fireEvent, render } from 'react-testing-library';
 import DropdownItems from '../DropdownItems';
 import React from 'react';
 import 'jest-styled-components';
@@ -11,20 +11,23 @@ function setup(props) {
   }
 
   const utils = render(
-    <DropdownItems {...defaultProps} {...props} data-testid='dropdownItems' />
+    <DropdownItems {...defaultProps} {...props} />
   );
 
-  const { getByTestId } = utils;
+  const { getByTestId, getAllByTestId } = utils;
   const dropdownItems = getByTestId('dropdownItems');
+  const dropdownItem = getAllByTestId('dropdownItem');
 
   return {
     ...utils,
-    dropdownItems
+    dropdownItems,
+    dropdownItem
   }
 }
 
 describe('Component - DropdownItems', () => {
   let dropdownItems;
+  let dropdownItem;
   let onSelect;
   let items = [
     {
@@ -37,14 +40,37 @@ describe('Component - DropdownItems', () => {
 
   beforeEach(() => {
     onSelect = jest.fn();
-    dropdownItems = setup({onSelect, items}).dropdownItems;
+    const setupItems = setup({ onSelect, items });
+    dropdownItems = setupItems.dropdownItems;
+    dropdownItem = setupItems.dropdownItem;
   });
 
-  afterEach(cleanup);
+  test('Should have correct position', () => {
+    expect(dropdownItems).toHaveStyleRule('position', 'absolute');
+  });
 
-  test('Should have working onSelect handler', () => {
-    fireEvent.click(dropdownItems.firstChild);
-    expect(onSelect).toHaveBeenCalled();
-    expect(onSelect).toHaveBeenCalledTimes(1);
+  test('Should have correct width', () => {
+    expect(dropdownItems).toHaveStyleRule('width', '200px');
+  });
+
+  describe("Component - DropdownItem", () => {
+    test('Should render', () => {
+      expect(dropdownItem).toBeTruthy();
+    });
+
+    test('Should have 2 dropdown items', () => {
+      expect(dropdownItem.length).toEqual(2);
+    });
+
+    test('Should display correct data', () => {
+      expect(dropdownItem[0].textContent).toEqual(items[0].name);
+      expect(dropdownItem[1].textContent).toEqual(items[1].name);
+    });
+
+    test('Should have working onSelect handler', () => {
+      fireEvent.click(dropdownItem[0]);
+      expect(onSelect).toHaveBeenCalled();
+      expect(onSelect).toHaveBeenCalledTimes(1);
+    });
   });
 })

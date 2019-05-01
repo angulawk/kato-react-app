@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from 'react-testing-library';
+import { fireEvent, render } from 'react-testing-library';
 import DropdownItem from '../DropdownItem';
 import React from 'react';
 import 'jest-styled-components';
@@ -10,7 +10,7 @@ function setup(props) {
   }
 
   const utils = render(
-    <DropdownItem {...defaultProps} {...props} data-testid='dropdownItem'>
+    <DropdownItem {...defaultProps} {...props}>
       Click me
     </DropdownItem>
   );
@@ -33,7 +33,9 @@ describe('Component - DropdownItem', () => {
     dropdownItem = setup({onClick}).dropdownItem;
   });
 
-  afterEach(cleanup);
+  test('Should have correct cursor', () => {
+    expect(dropdownItem).toHaveStyleRule('cursor', 'pointer');
+  });
 
   test('Should have correct border-top', () => {
     expect(dropdownItem).toHaveStyleRule('border-top', '1px solid #FFFFFF');
