@@ -6,7 +6,8 @@ const Loader = ({
   isLoading
 }) => (
   <Loader.Container
-    isLoading={isLoading.toString()}
+    isLoading={isLoading && isLoading.toString()}
+    data-testid='loader'
   >
     <CircularProgress />
   </Loader.Container>
@@ -24,7 +25,7 @@ ${({
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: #FFFFFF;
     z-index: 9999;
     transition: all 300ms ease-in-out;
     opacity: ${isLoading === "true" ? 1 : 0};

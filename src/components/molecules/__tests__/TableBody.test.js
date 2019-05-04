@@ -34,26 +34,28 @@ function setup(props) {
 }
 
 describe('Component - TableBody', () => {
-  const data = [
-    {
-      dt: 1487246400,
-      date: "1/02",
-      humidity: 10,
-      temp: 3324
-    },
-    {
-      dt: 1487257200,
-      date: "3/03",
-      humidity: 40,
-      temp: 6543
-    },
-    {
-      dt: 1487408400,
-      date: "4/05",
-      humidity: 90,
-      temp: 7553
-    }
-  ];
+  const data = {
+    list: [
+      {
+        dt: 1487246400,
+        date: "1/02",
+        humidity: 10,
+        temp: 3324
+      },
+      {
+        dt: 1487257200,
+        date: "3/03",
+        humidity: 40,
+        temp: 6543
+      },
+      {
+        dt: 1487408400,
+        date: "4/05",
+        humidity: 90,
+        temp: 7553
+      }
+    ]
+  }
 
   test('Should render Table Body Row', () => {
     const { tableBodyRow } = setup({ data });
@@ -71,8 +73,8 @@ describe('Component - TableBody', () => {
     const { tableBodyRow } = setup({ data });
     const tableData = JSON.parse(tableBodyRow[0].getAttribute("data"));
 
-    expect(tableData.date).toEqual(data[0].date);
-    expect(tableData.humidity).toEqual(data[0].humidity);
-    expect(tableData.temp).toEqual(data[0].temp);
+    expect(tableData.date).toEqual(data.list[0].date);
+    expect(tableData.humidity).toEqual(data.list[0].humidity);
+    expect(tableData.temp).toEqual(data.list[0].temp);
   });
 })

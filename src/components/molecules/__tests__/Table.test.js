@@ -54,26 +54,28 @@ describe('Component - Table', () => {
     }
   ];
 
-  const data = [
-    {
-      dt: 1487246400,
-      date: "1/02",
-      humidity: 10,
-      temp: 3324
-    },
-    {
-      dt: 1487257200,
-      date: "3/03",
-      humidity: 40,
-      temp: 6543
-    },
-    {
-      dt: 1487408400,
-      date: "4/05",
-      humidity: 90,
-      temp: 7553
-    }
-  ];
+  const data = {
+    list: [
+      {
+        dt: 1487246400,
+        date: "1/02",
+        humidity: 10,
+        temp: 3324
+      },
+      {
+        dt: 1487257200,
+        date: "3/03",
+        humidity: 40,
+        temp: 6543
+      },
+      {
+        dt: 1487408400,
+        date: "4/05",
+        humidity: 90,
+        temp: 7553
+      }
+    ]
+  }
 
   test('Should have correct margin', () => {
     const { table } = setup({ titles, data });
@@ -101,13 +103,13 @@ describe('Component - Table', () => {
 
   describe('Component - Table Header Row', () => {
     test('Should render', () => {
-      const { tableHeaderRow } = setup({ titles });
+      const { tableHeaderRow } = setup({ titles, data });
 
       expect(tableHeaderRow).toBeTruthy();
     });
 
     test('Should display correct data', () => {
-      const { tableHeaderRow } = setup({ titles });
+      const { tableHeaderRow } = setup({ titles, data });
       const tableHeaderTitle = JSON.parse(tableHeaderRow.getAttribute("titles"));
 
       expect(tableHeaderTitle[0].name).toEqual(titles[0].name);
@@ -127,9 +129,9 @@ describe('Component - Table', () => {
       const { tableBody } = setup({ data });
       const tableBodyData = JSON.parse(tableBody.getAttribute("data"))
 
-      expect(tableBodyData[0].date).toEqual(data[0].date);
-      expect(tableBodyData[0].humidity).toEqual(data[0].humidity);
-      expect(tableBodyData[0].temp).toEqual(data[0].temp);
+      expect(tableBodyData.list[0].date).toEqual(data.list[0].date);
+      expect(tableBodyData.list[0].humidity).toEqual(data.list[0].humidity);
+      expect(tableBodyData.list[0].temp).toEqual(data.list[0].temp);
     });
   });
 })
