@@ -6,24 +6,21 @@ import TableBody from "../TableBody";
 const Table = ({
   titles,
   data
-}) => {
-  if(data && data.list) {
-    return (
-      <Table.Container data-testid='table'>
-        <Table.Header>
-        <TableHeaderRow titles={titles} />
-      </Table.Header>
-        <TableBody data={data} />
-      </Table.Container>
-    )
-  } else {
-    return (
-      <Table.EmptyRecordsContainer>
-        There are no data to display yet. Please select a city.
-      </Table.EmptyRecordsContainer>
-    )
-  }
-}
+}) =>
+data && data.list ?
+  (
+    <Table.Container data-testid='table'>
+      <Table.Header>
+      <TableHeaderRow titles={titles} />
+    </Table.Header>
+      <TableBody data={data} />
+    </Table.Container>
+  ) :
+  (
+    <Table.EmptyRecordsContainer>
+      There are no data to display yet. Please select a city.
+    </Table.EmptyRecordsContainer>
+  )
 
 Table.Container = styled.table`
   margin: 100px auto;

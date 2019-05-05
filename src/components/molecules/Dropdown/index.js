@@ -6,10 +6,11 @@ import DropdownIcon from "../../atoms/DropdownIcon";
 
 function Dropdown({
   items,
-  onSelect
+  onSelect,
+  placeholder
 }) {
   const [areDropdownItemsVisible, setAreDropdownItemsVisible] = useState(false);
-  const [dropdownItemValue, setDropdownItemValue] = useState("Select city");
+  const [dropdownItemValue, setDropdownItemValue] = useState(placeholder);
 
   return(
     <Dropdown.Container data-testid='dropdown'>

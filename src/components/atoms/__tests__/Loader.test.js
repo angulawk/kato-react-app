@@ -78,7 +78,7 @@ describe('Component - Loader', () => {
     expect(loader).toHaveStyleRule('opacity', '0');
   });
 
-  test('Should have correct visibility if data is loading', () => {
+  test('Should have correct visibility if data is not loading', () => {
     expect(loader).toHaveStyleRule('visibility', 'hidden');
   });
 

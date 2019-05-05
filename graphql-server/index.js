@@ -4,12 +4,12 @@ const { RESTDataSource } = require('apollo-datasource-rest');
 class ForecastsAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'https://samples.openweathermap.org';
+    this.baseURL = 'https://api.openweathermap.org';
   }
 
   async getForecast(city, countryCode, appId) {
     try {
-      const data = await this.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${countryCode}&appid=${appId}`, null, {
+      const data = await this.get(`${this.baseURL}/data/2.5/forecast?q=${city},${countryCode}&appid=${appId}`, null, {
         cacheOptions: {ttl: 60}
       })
       return data;
@@ -26,6 +26,7 @@ const typeDefs = gql`
  }
 
  type ForecastData {
+   dt: String
    dt_txt: String
    main: ForecastDetails
  }

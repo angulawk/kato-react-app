@@ -10,6 +10,7 @@ const GET_FORECAST = gql`
   query($city: String!, $countryCode: String!, $appId: String!) {
     forecasts(city: $city, countryCode: $countryCode, appId: $appId) {
       list {
+        dt
         dt_txt
         main {
           humidity
@@ -56,7 +57,7 @@ const titles = [
   }
 ];
 
-function Container({ forecastQuery }) {
+export function Container({ forecastQuery }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -76,6 +77,7 @@ function Container({ forecastQuery }) {
       <Dropdown
         items={items}
         onSelect={handleDropdownSelect}
+        placeholder="Select city"
       />
       {!isLoading &&
         <Table
