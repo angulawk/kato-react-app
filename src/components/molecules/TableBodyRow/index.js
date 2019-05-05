@@ -7,13 +7,13 @@ const TableBodyRow = ({
 }) => (
   <TableBodyRow.Container data-testid='tableBodyRow'>
     <TableCell>
-      {data.date}
+      {data.dt_txt}
     </TableCell>
     <TableCell>
-      {data.humidity}
+      {data.main.humidity}
     </TableCell>
     <TableCell>
-      {data.temp}
+      {data.main.temp}
     </TableCell>
   </TableBodyRow.Container>
 );

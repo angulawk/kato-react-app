@@ -14,6 +14,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
+### `yarn server`
+
+Runs the server.<br>
+Open [http://localhost:4000](http://localhost:4000) to see graphql playground.
+
+On the left side you can paste query, for example:
+```
+{
+  forecasts(city: "London", countryCode: "uk", appId: "a400b7bf74842ffd8d384f7defdbefee") {
+    list {
+      dt_txt
+      main {
+        humidity
+        temp
+      }
+    }
+  }
+}
+```
+
+After click play button you should see data rendered on the right side of playground.<br>
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>

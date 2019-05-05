@@ -82,15 +82,10 @@ describe('Component - Dropdown', () => {
 
   describe('Component - Dropdown Button', () => {
     test('Should have correct text', () => {
-      const { dropdownButton } = setup({ items });
+      let placeholder = "Placeholder";
+      const { dropdownButton } = setup({ items, placeholder });
 
-      expect(dropdownButton.textContent).toEqual(items[0].name);
-    });
-
-    test('Should have correct text', () => {
-      const { dropdownButton } = setup({ items });
-
-      expect(dropdownButton.textContent).toEqual(items[0].name);
+      expect(dropdownButton.textContent).toEqual(placeholder);
     });
 
     test('Component Dropdown Icon should have correct icon', () => {

@@ -7,12 +7,12 @@ function TableBody({
 }) {
   return(
     <TableBody.Container data-testid='tableBody'>
-      {data && renderTableBody()}
+      { renderTableBody() }
     </TableBody.Container>
   );
 
   function renderTableBody() {
-    return data.map((item) => (
+    return data && data.list && data.list.map((item) => (
       <TableBodyRow key={item.dt} data={item}>
         {item}
       </TableBodyRow>

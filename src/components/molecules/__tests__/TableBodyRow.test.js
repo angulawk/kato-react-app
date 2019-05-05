@@ -30,10 +30,11 @@ function setup(props) {
 
 describe('Component - TableBodyRow', () => {
   const data = {
-    dt: 1487246400,
-    date: "1/02",
-    humidity: 10,
-    temp: 3324
+    dt_txt: "2019-03-31 14:00:00",
+    main: {
+      humidity: 10,
+      temp: 3324
+    }
   };
 
   test('Should render Table Cell', () => {
@@ -45,9 +46,9 @@ describe('Component - TableBodyRow', () => {
   test('Should have correct text', () => {
     const { tableCell } = setup({ data });
 
-    expect(tableCell[0].textContent).toEqual(data.date);
-    expect(tableCell[1].textContent).toEqual(data.humidity.toString());
-    expect(tableCell[2].textContent).toEqual(data.temp.toString());
+    expect(tableCell[0].textContent).toEqual(data.dt_txt);
+    expect(tableCell[1].textContent).toEqual(data.main.humidity.toString());
+    expect(tableCell[2].textContent).toEqual(data.main.temp.toString());
   });
 
   test('Should display three Table Cells', () => {

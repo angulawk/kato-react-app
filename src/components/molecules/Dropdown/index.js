@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import DropdownButton from "../../atoms/DropdownButton";
 import DropdownItems from "../DropdownItems";
@@ -6,10 +6,11 @@ import DropdownIcon from "../../atoms/DropdownIcon";
 
 function Dropdown({
   items,
-  onSelect
+  onSelect,
+  placeholder
 }) {
   const [areDropdownItemsVisible, setAreDropdownItemsVisible] = useState(false);
-  const [dropdownItemValue, setDropdownItemValue] = useState(items && items[0] && items[0].name);
+  const [dropdownItemValue, setDropdownItemValue] = useState(placeholder);
 
   return(
     <Dropdown.Container data-testid='dropdown'>
