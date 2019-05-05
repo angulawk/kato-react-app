@@ -7,31 +7,40 @@ import gql from "graphql-tag";
 import Loader from "./components/atoms/Loader";
 
 const GET_FORECAST = gql`
-  query($city: String!, $appId: String!) {
-    forecasts(city: $city, appId: $appId) {
+  query($city: String!, $countryCode: String!, $appId: String!) {
+    forecasts(city: $city, countryCode: $countryCode, appId: $appId) {
       list {
-        dt
         dt_txt
         main {
           humidity
           temp
         }
       }
-      city {
-        name
-      }
     }
   }
 `;
 
+const APP_ID = "a400b7bf74842ffd8d384f7defdbefee";
+
 const items = [
   {
+    name: "München"
+  },
+  {
+    name: "London"
+  }
+];
+
+const queryItems = [
+  {
     name: "München",
-    id: 'b6907d289e10d714a6e88b30761fae22'
+    city: "Munich",
+    countryCode: "de"
   },
   {
     name: "London",
-    id: '535310d714a6e88b30761fae22'
+    city: "London",
+    countryCode: "uk"
   }
 ];
 
@@ -48,18 +57,7 @@ const titles = [
 ];
 
 function Container({ forecastQuery }) {
-  const [isSelected, setIsSelected] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("");
-  const [selectedValueId, setSelectedValueId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if(isSelected) {
-      setInterval(() => {
-        forecastQuery && forecastQuery.refetch({ city: selectedValue, appId: selectedValueId });
-      }, 10000);
-    }
-  }, [forecastQuery, isSelected, selectedValue, selectedValueId]);
 
   useEffect(() => {
     const isLoading = forecastQuery && forecastQuery.loading;
@@ -89,20 +87,27 @@ function Container({ forecastQuery }) {
   );
 
   async function handleDropdownSelect(value) {
-    const selectedItem = items.find(item => item.name === value);
-    setIsSelected(true);
-    setSelectedValue(value);
-    setSelectedValueId(selectedItem.id);
+    const selectedItem = queryItems.find(item => item.name === value);
+    const { city, countryCode } = selectedItem;
+    forecastQuery.stopPolling();
 
-    await forecastQuery && forecastQuery.refetch({ city: value, appId: selectedItem.id });
+    await forecastQuery && forecastQuery.refetch({ city, countryCode, appId: APP_ID });
+    forecastQuery && forecastQuery.startPolling(10000);
   }
 }
 
 export default compose(
 	graphql(GET_FORECAST,
 		{
-			skip: props => !!props.skip,
-			options: ( { variables: { city:'', appId: '' } } ),
+			options: (
+        {
+          variables: {
+            city: '',
+            countryCode: '',
+            appId: APP_ID
+          }
+        }
+      ),
       name: "forecastQuery"
 		}
 	)

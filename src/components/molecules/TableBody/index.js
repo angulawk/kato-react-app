@@ -7,7 +7,7 @@ function TableBody({
 }) {
   return(
     <TableBody.Container data-testid='tableBody'>
-      {renderTableBody()}
+      { renderTableBody() }
     </TableBody.Container>
   );
 

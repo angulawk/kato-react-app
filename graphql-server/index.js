@@ -7,14 +7,14 @@ class ForecastsAPI extends RESTDataSource {
     this.baseURL = 'https://samples.openweathermap.org';
   }
 
-  async getForecast(city, appId) {
+  async getForecast(city, countryCode, appId) {
     try {
-      const data = await this.get(`https://samples.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${appId}`, null, {
+      const data = await this.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${countryCode}&appid=${appId}`, null, {
         cacheOptions: {ttl: 60}
       })
       return data;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 }
@@ -26,29 +26,23 @@ const typeDefs = gql`
  }
 
  type ForecastData {
-   dt: String
    dt_txt: String
    main: ForecastDetails
  }
 
- type CityDetails {
-   name: String
- }
-
   type Forecast {
     list: [ForecastData]
-    city: CityDetails
   }
 
   type Query {
-    forecasts(city: String, appId: String): Forecast
+    forecasts(city: String, countryCode: String, appId: String): Forecast
   }
 `;
 
 const resolvers = {
   Query: {
-    forecasts: async (_source, { city, appId }, { dataSources }) => {
-      return dataSources.forecastsAPI.getForecast(city, appId);
+    forecasts: async (_source, { city, countryCode, appId }, { dataSources }) => {
+      return dataSources.forecastsAPI.getForecast(city, countryCode, appId);
     }
   }
 };
